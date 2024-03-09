@@ -46,8 +46,8 @@ stages:
           Write-Host ${{ parameters.name }}     
           New-Module -ScriptBlock {function Hello {"Hello!"}}            
           function Get-Version {
-            [CmdletBinding()] #<<-- This turns a regular function into an advanced function
-            param() #<<-- Required but the param block can be empty         
+            [CmdletBinding()] 
+            param()       
             $data = @(
                 'Zero'
                 'One'
