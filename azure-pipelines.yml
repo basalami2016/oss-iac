@@ -35,9 +35,12 @@ stages:
         scriptType: ps #bash
         scriptLocation: inlineScript
         inlineScript: |
-          az upgrade
-          az --version
-          az account show         
+          #az upgrade
+          #az --version
+          #az account show   
+          function Hello ($name) {
+              Write-Output "Hello, $name"
+          }      
     - task: CmdLine@2 
       displayName: 'Microsoft Security DevOps' 
       inputs:  
