@@ -41,6 +41,15 @@ stages:
         script: |
           Write-Host ${{ parameters.name }}
           function Get-Version {
+            $data = @(
+                'Zero'
+                'One'
+                'Two'
+                'Three'
+            )
+            foreach ($d in $data) {              
+              Write-Output $d
+            }
             Write-Host "it works"
             $PSVersionTable.PSVersion
           }         
