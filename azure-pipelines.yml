@@ -46,13 +46,13 @@ stages:
           }         
           function Get-FName {
             param(
-               [string] $myName
+               [string] $Name
             )
-            Write-Host "Hello" $myName
+            Write-Host $Name
           }
           Get-Version 
           $funcName = "Get-FName"
-          $funcName -myName "Biliaminu Salami"
+          $funcName -Name "Biliaminu Salami"
           Get-ChildItem -Path Function:\Get-*Version
           Get-ChildItem -Path Function:\Get-*FName 
     # - task: AzurePowerShell@5 #Run a PowerShell script within an Azure environment.
