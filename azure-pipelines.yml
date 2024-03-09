@@ -58,11 +58,21 @@ stages:
           #az devops login --organization https://dev.azure.com/niqflex-org #With SYSTEM ACCESSTOKEN configed, auto authn takes place 
           az boards query --wiql "SELECT [System.Title], [System.Description] FROM workitems" --output table --org https://dev.azure.com/niqflex-org
           $m = New-Module -ScriptBlock {
+             $personalToken = "4xvawwmxmgtlgcma6wtqz24pwrfdo7ufixfghfqhghmhm7pvoxla" 
+             #Write-Host "Initialize authentication context" -ForegroundColor Yellow
+             $token = [System.Convert]::ToBase64String([System.Text.Encoding]::ASCII.GetBytes(":$($personalToken)"))
+             $header = @{authorization = "Basic $token"}
             function Hello ($name) {
               Write-Output "Hello, $name"
             }
             function Goodbye ($name) {
               Write-Output  "Goodbye, $name"
+              #https://tenbulls.co.uk/2020/03/11/querying-azure-devops-rest-api-with-powershell/
+               $url = "https://dev.azure.com/niqflex-org/niqflex/_apis/wit/queries?api-version=7.1-preview.2" 
+               $output = Invoke-RestMethod -Uri $url -Method Get -ContentType "application/json" -Headers $header
+               $output.value | ForEach-Object {
+                   Write-Host $_.name
+               }   
             }
             function ReadData () {
               $data = @(
@@ -158,11 +168,12 @@ stages:
                   }                  
               }; 
               $env:AZURE_DEVOPS_EXT_PAT = '4xvawwmxmgtlgcma6wtqz24pwrfdo7ufixfghfqhghmhm7pvoxla'
-              Export-ModuleMember -function SayHello -Variable SayHelloHelp
-         
+              Export-ModuleMember -function SayHello -Variable SayHelloHelp         
           }
           $SayHelloHelp          
-          SayHello Jeffrey           
+          SayHello Jeffrey  
+      env:
+        AZURE_DEVOPS_EXT_PAT: $(System.AccessToken)         
           
     # - task: AzurePowerShell@5 #Run a PowerShell script within an Azure environment.
     #   inputs:
