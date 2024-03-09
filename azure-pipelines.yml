@@ -18,13 +18,24 @@ stages:
   - job: oss_job
     steps:      
     - task: AzureCLI@2 #https://learn.microsoft.com/en-us/azure/devops/pipelines/library/connect-to-azure?view=azure-devops
-      displayName: Azure CLI
+      displayName: Azure-PS1
       inputs:
         azureSubscription: niqflex_boards
         scriptType: pscore #bash
         scriptLocation: inlineScript        
         arguments: '${{ parameters.name }}'      
         inlineScript: './scripts/oss-iac.ps1 $1'           
+      env:
+        AZURE_DEVOPS_EXT_PAT: $(System.AccessToken) 
+    - task: AzureCLI@2 #https://learn.microsoft.com/en-us/azure/devops/pipelines/library/connect-to-azure?view=azure-devops
+      displayName: Azure-CLI
+      inputs:
+        azureSubscription: niqflex_boards
+        scriptType: pscore #bash
+        scriptLocation: inlineScript        
+        arguments: '${{ parameters.name }}'      
+        inlineScript: |
+           az boards query --wiql "SELECT [System.Title], [System.Description] FROM workitems" --output table --org https://dev.azure.com/niqflex-org
       env:
         AZURE_DEVOPS_EXT_PAT: $(System.AccessToken) 
 
