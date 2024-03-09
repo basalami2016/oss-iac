@@ -22,9 +22,11 @@ stages:
       inputs:
         azureSubscription: niqflex_boards
         scriptType: pscore #bash
-        scriptLocation: inlineScript
+        #scriptLocation: inlineScript
+        scriptLocation: 'scriptPath'
         arguments: '${{ parameters.name }}'
-        inlineScript: |
-            './scripts/oss-iac.ps1 $1'       
+        #inlineScript: |
+        #    './scripts/oss-iac.ps1 $1'  
+        scriptPath: './scripts/oss-iac.ps1 $1'    
       env:
         AZURE_DEVOPS_EXT_PAT: $(System.AccessToken)    
