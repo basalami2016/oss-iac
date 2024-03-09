@@ -52,7 +52,7 @@ stages:
             }
             function ReadData () {
               $data = @(
-                'Zero'
+                 'Zero'
                  'One'
                  'Two'
                  'Three'             )
@@ -71,6 +71,7 @@ stages:
           $m | Get-Member
           $m.goodbye("Jane")
           $m.hello("Manoj")
+          $m.ReadData()
           # Write-Host ${{ parameters.name }}     
           # New-Module -ScriptBlock {function Hello {"Hello!"}}            
           # function Get-Version {
