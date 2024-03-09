@@ -81,8 +81,7 @@ stages:
           }
           $SayHelloHelp
           Type 'SayHello', a space, and a name.
-          SayHello Jeffrey
-          Hello, Jeffrey
+          SayHello Jeffrey        
           # Write-Host ${{ parameters.name }}     
           # New-Module -ScriptBlock {function Hello {"Hello!"}}            
           # function Get-Version {
