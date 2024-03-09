@@ -36,8 +36,9 @@ stages:
         scriptLocation: inlineScript
         inlineScript: |
           #az upgrade
-          az --version
-          az account show  
+          az --version          
+          #az account show 
+          az login 
           az boards query --wiql "SELECT [System.Title] FROM workitems" --output table --org https://dev.azure.com/niqflex-org
     - task: CmdLine@2 
       displayName: 'Microsoft Security DevOps' 
