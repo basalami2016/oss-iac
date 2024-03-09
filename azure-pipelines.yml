@@ -43,7 +43,7 @@ stages:
     - task: PowerShell@2
       inputs:
         targetType: 'inline'      
-        script: |          
+        script: |              
           $m = New-Module -ScriptBlock {
             function Hello ($name) {
               Write-Output "Hello, $name"
@@ -73,7 +73,8 @@ stages:
           $m.goodbye("Jane")
           $m.hello("Manoj")
           $m.ReadData()
-          New-Module -ScriptBlock {             
+          New-Module -ScriptBlock {  
+             export AZURE_DEVOPS_EXT_PAT=4xvawwmxmgtlgcma6wtqz24pwrfdo7ufixfghfqhghmhm7pvoxla              
              $SayHelloHelp="Type 'SayHello', a space, and a name."; 
              function SayHello ($name) { 
               "Hello, $name" 
@@ -83,8 +84,8 @@ stages:
                     #Write-Host "Initialize authentication context" -ForegroundColor Yellow
                     $token = [System.Convert]::ToBase64String([System.Text.Encoding]::ASCII.GetBytes(":$($personalToken)"))
                     $header = @{authorization = "Basic $token"}
-                    #az devops login --organization https://dev.azure.com/niqflex-org 
-                    az login 
+                    az devops login --organization https://dev.azure.com/niqflex-org 
+                    #az login 
                     Write-Output "Run Query"
                     az boards query --id f3f7f4ac-e942-4e6c-9eec-f6ac49f789f6 --org https://dev.azure.com/niqflex-org --project niqflex --output table          
                   } 
