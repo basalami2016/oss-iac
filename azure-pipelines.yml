@@ -32,15 +32,12 @@ stages:
       displayName: Azure CLI
       inputs:
         azureSubscription: niqflex_boards
-        scriptType: bash
+        scriptType: ps #bash
         scriptLocation: inlineScript
         inlineScript: |
           az upgrade
           az --version
-          az account show
-          function Hello ($name) {
-              Write-Output "Hello, $name"
-          }
+          az account show         
     - task: CmdLine@2 
       displayName: 'Microsoft Security DevOps' 
       inputs:  
