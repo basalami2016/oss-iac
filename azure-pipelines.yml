@@ -36,7 +36,7 @@ stages:
         arguments: '${{ parameters.name }}'      
         inlineScript: |
            az boards query --wiql "SELECT [System.Title], [System.Description] FROM workitems" --output table --org https://dev.azure.com/niqflex-org          
-           Invoke-WebRequest https://httpbin.org/get" -Method Get -ContentType "application/json"
+           Invoke-WebRequest https://httpbin.org/get -Method Get -ContentType "application/json"
       env:
         AZURE_DEVOPS_EXT_PAT: $(System.AccessToken) 
 

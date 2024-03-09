@@ -2,3 +2,4 @@
 /note.*
 /xazure-pipelines.yml
 /scripts/legacy.*
+/scripts/invoke-pipline.*
