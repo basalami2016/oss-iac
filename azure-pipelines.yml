@@ -5,20 +5,6 @@ parameters:
 - name: name  
   default: 'oss_stage'
 
-- name: 'param'
-  type: object
-  default: 
-  - FOO
-  - BAR
-  - ZOO
-
-- name: 'ids'
-  type: object
-  default: 
-  - 1
-  - 2
-  - 3
-
 variables:
 - name: one
   value: initialValue 
@@ -30,10 +16,7 @@ stages:
 - stage: ${{ parameters.name }}
   jobs:
   - job: oss_job
-    steps:     
-    - script: | 
-      ${{ each p in parameters.param }}:
-        echo ${{ p }}     
+    steps:    
     - task: AzureCLI@2 #https://learn.microsoft.com/en-us/azure/devops/pipelines/library/connect-to-azure?view=azure-devops
       displayName: Azure-PS1
       inputs:
@@ -57,8 +40,8 @@ stages:
            $baseUri = "$($env:SYSTEM_TEAMFOUNDATIONCOLLECTIONURI)$env:SYSTEM_TEAMPROJECTID/";
            $headers = @{Authorization = $auth };
            Write-Host "baseUrl $($baseUri)"       
-           #$resp = Invoke-RestMethod -Uri "$($baseUri)_apis/wit/workitems?ids='${{ parameters.ids }}'" -Method Get -ContentType "application/json" 
-           #Write-Host $resp  
+           $resp = Invoke-RestMethod -Uri "$($baseUri)_apis/wit/workitems?ids='${{ parameters.ids }}'" -Method Get -ContentType "application/json" 
+           Write-Host $resp  
            $Response = Invoke-WebRequest -URI https://dev.azure.com/niqflex-org/niqflex/_apis/wit/workitems?ids=1"  
            Write-Host $Response                   
       env:
