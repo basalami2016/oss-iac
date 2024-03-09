@@ -8,6 +8,19 @@
 #Remove functions in Memory Get-ChildItem -Path Function:\Get-*Version | Remove-Item
 #Verify functions is removed Get-ChildItem -Path Function:\Get-*Version
 #Get-Command -Name Test-MrParameter -Syntax
+# SELECT
+#     [System.Id],
+#     [System.AssignedTo],
+#     [System.State],
+#     [System.Title],
+#     [System.Tags]
+# FROM workitems
+# WHERE
+#     [System.TeamProject] = 'Design Agile'
+#     AND [System.WorkItemType] = 'User Story'
+#     AND [System.State] = 'Active'
+# ORDER BY [System.ChangedDate] DESC
+# ASOF '02-11-2020'
 
 trigger:
 - master
