@@ -9,19 +9,18 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+stages:
+- stage: oss_stage
+  jobs:
+  - job: oss_job
+    steps:
+    - task: CmdLine@2  
+      inputs:  
+        workingDirectory: $(Build.SourcesDirectory)
+        script: |
+          cd $(Build.SourcesDirectory)
+          ls
+    - script: echo Hello, world!
+    displayName: 'Run a one-line script'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
 
-- task: PowerShell@2
-  inputs:
-    targetType: 'inline'
-    script: |
-      Write-Host "##vso[task.LogIssue type=error;]This is the error"
-      exit 1
-    # Writes an error to build summary and to log in red text
