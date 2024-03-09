@@ -44,6 +44,7 @@ stages:
       inputs:
         targetType: 'inline'      
         script: |
+          az boards work-item show --id
           $m = New-Module -ScriptBlock {
             function Hello ($name) {
               Write-Output "Hello, $name"
