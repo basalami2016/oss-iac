@@ -83,10 +83,11 @@ stages:
               "Hello, $name" 
                try
                   {
+                    Write-Output "Run Query"
                     az boards query --id f3f7f4ac-e942-4e6c-9eec-f6ac49f789f6  --output table          
                   } 
                   catch {
-                      Write-Error "az boards query"
+                      Write-Error "completed with error"
                   }
                   finally {
                     Write-Output "Completed"
