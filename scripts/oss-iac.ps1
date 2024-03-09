@@ -6,7 +6,7 @@ $m = New-Module -ScriptBlock {
     #Format-Table -Property  [System.Title],
 
   $output = Invoke-RestMethod -Uri $url -Method Get -ContentType "application/json"  #-Headers $header 
-  Write-Output $output.content
+  Write-Output $output.value
   $output.value | ForEach-Object {
         Write-Host $_.System.Title
   }
