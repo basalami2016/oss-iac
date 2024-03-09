@@ -80,10 +80,10 @@ stages:
               "Hello, $name" 
                try
                   {
-                    $personalToken = "4xvawwmxmgtlgcma6wtqz24pwrfdo7ufixfghfqhghmhm7pvoxla" 
+                    #$personalToken = "4xvawwmxmgtlgcma6wtqz24pwrfdo7ufixfghfqhghmhm7pvoxla" 
                     #Write-Host "Initialize authentication context" -ForegroundColor Yellow
-                    $token = [System.Convert]::ToBase64String([System.Text.Encoding]::ASCII.GetBytes(":$($personalToken)"))
-                    $header = @{authorization = "Basic $token"}
+                    #$token = [System.Convert]::ToBase64String([System.Text.Encoding]::ASCII.GetBytes(":$($personalToken)"))
+                    #$header = @{authorization = "Basic $token"}
                     #az devops login --organization https://dev.azure.com/niqflex-org 
                     #az login 
                     echo  "4xvawwmxmgtlgcma6wtqz24pwrfdo7ufixfghfqhghmhm7pvoxla" | az devops login --organization https://dev.azure.com/contoso/
