@@ -2,8 +2,8 @@ $m = New-Module -ScriptBlock {
 
   $url =  "https://dev.azure.com/niqflex-org/niqflex/_apis/wit/queries?api-version=7.1-preview.2"
 
-  Invoke-RestMethod -Uri $url | 
-    Format-Table -Property  [System.Title],
+  #Invoke-RestMethod -Uri $url | 
+    #Format-Table -Property  [System.Title],
 
   $output = Invoke-RestMethod -Uri $url -Method Get -ContentType "application/json"  #-Headers $header 
   $output.value | ForEach-Object {
