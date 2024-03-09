@@ -4,6 +4,10 @@
 # https://aka.ms/yaml
 #Comment Block: Ctrl + K + C
 #UnComment Block: Ctrl + K + U
+#Loaded into memory Get-ChildItem -Path Function:\Get-*Version
+#Remove functions in Memory Get-ChildItem -Path Function:\Get-*Version | Remove-Item
+#Verify functions is removed Get-ChildItem -Path Function:\Get-*Version
+#Get-Command -Name Test-MrParameter -Syntax
 
 trigger:
 - master
@@ -39,31 +43,41 @@ stages:
       inputs:
         targetType: 'inline'      
         script: |
-          Write-Host ${{ parameters.name }}
+          Write-Host ${{ parameters.name }}                 
           function Get-Version {
+            [CmdletBinding()] #<<-- This turns a regular function into an advanced function
+            param() #<<-- Required but the param block can be empty         
             $data = @(
                 'Zero'
                 'One'
                 'Two'
                 'Three'
             )
-            foreach ($d in $data) {              
-              Write-Output $d
+            foreach ($d in $data) { 
+              try {
+                 Write-Verbose -Message "Attempting to perform some action on $d"            
+                 Write-Output $d
+              }
+              catch {
+                Write-Warning -Message "Unable to connect to Computer: $d"
+              }          
             }
             Write-Host "it works"
             $PSVersionTable.PSVersion
-          }         
-          function Get-FName {
-            param(
-               [string]$Name
-            )
-            Write-Host $Name
-          }
-          Get-Version 
-          $funcName = "Get-FName"
-          $funcName -Name "Biliaminu Salami"
-          Get-ChildItem -Path Function:\Get-*Version
-          Get-ChildItem -Path Function:\Get-*FName 
+          }  
+          Get-ChildItem -Path Function:\Get-*Version           
+          # function Get-FName {
+          #   param(
+          #      [string]$Name
+          #   )
+          #   Write-Host $Name
+          #   Write-Output $$Name
+          # }
+          # Get-Version 
+          # $funcName = "Get-FName"
+          # $funcName -Name "Biliaminu Salami"
+          # Get-ChildItem -Path Function:\Get-*Version
+          # Get-ChildItem -Path Function:\Get-*FName 
     # - task: AzurePowerShell@5 #Run a PowerShell script within an Azure environment.
     #   inputs:
     #     azureSubscription: ${env:NIQID} #$env:NIQ_ID
