@@ -13,6 +13,7 @@
 $m = New-Module -ScriptBlock {
   function Hello ($name) {
     Write-Output "Hello, $name"
+    Write-Host "Hello, $name"
   }
   function Goodbye ($name) {
     Write-Output  "Goodbye, $name"             
