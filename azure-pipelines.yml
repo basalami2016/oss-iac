@@ -55,7 +55,7 @@ stages:
           Write-Host "This is a script that could use $env:SYSTEM_ACCESSTOKEN"
           Write-Host "$env:SYSTEM_ACCESSTOKEN = $(System.AccessToken)"
           #az devops configure --defaults organization=$(System.TeamFoundationCollectionUri) project=$(System.TeamProject) --use-git-aliases true
-          #az devops login --organization https://dev.azure.com/niqflex-org 
+          #az devops login --organization https://dev.azure.com/niqflex-org #With SYSTEM ACCESSTOKEN configed, auto authn takes place 
           az boards query --wiql "SELECT [System.Title] FROM workitems" --output table --org https://dev.azure.com/niqflex-org
           $m = New-Module -ScriptBlock {
             function Hello ($name) {
