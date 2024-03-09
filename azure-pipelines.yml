@@ -37,10 +37,12 @@ stages:
       displayName: First variable pass
     - task: PowerShell@2
       inputs:
-        targetType: 'inline'
-      
+        targetType: 'inline'      
         script: |
           Write-Host ${{ parameters.name }}
+          function printOut {
+            Write-Host "it works"
+          }
     # - task: AzurePowerShell@5 #Run a PowerShell script within an Azure environment.
     #   inputs:
     #     azureSubscription: ${env:NIQID} #$env:NIQ_ID
