@@ -1,6 +1,6 @@
 $m = New-Module -ScriptBlock {
 
-  $url =  https://dev.azure.com/niqflex-org/niqflex/_apis/wit/queries?api-version=7.1-preview.2
+  $url =  "https://dev.azure.com/niqflex-org/niqflex/_apis/wit/queries?api-version=7.1-preview.2"
 
   Invoke-RestMethod -Uri $url | 
     Format-Table -Property  [System.Title],
