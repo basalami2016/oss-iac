@@ -46,6 +46,17 @@ stages:
           }
           Get-Version 
           Get-ChildItem -Path Function:\Get-*Version
+          function Get-Date_Func {
+            param(
+               [DateTime] $Date
+            )
+            process {
+              $Date
+            }
+          }
+          $dateStr = '19-06-2018'
+          Get-Date_Func $dateStr
+          Get-ChildItem -Path Function:\Get-*Version
     # - task: AzurePowerShell@5 #Run a PowerShell script within an Azure environment.
     #   inputs:
     #     azureSubscription: ${env:NIQID} #$env:NIQ_ID
