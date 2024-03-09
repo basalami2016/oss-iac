@@ -35,6 +35,7 @@ stages:
         scriptType: bash
         scriptLocation: inlineScript
         inlineScript: |
+          az upgrade
           az --version
           az account show
     - task: CmdLine@2 
