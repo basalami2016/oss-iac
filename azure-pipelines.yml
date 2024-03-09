@@ -83,30 +83,20 @@ stages:
               "Hello, $name" 
                try
                   {
-                    $Response = Invoke-WebRequest -Uri "https://dev.azure.com/niqflex-org/niqflex/_apis/wit/queries?api-version=7.1-preview.2"
-                     # This will only execute if the Invoke-WebRequest is successful.
-                    $StatusCode = $Response.StatusCode                   
+                    az boards query --id f3f7f4ac-e942-4e6c-9eec-f6ac49f789f6  --output table          
                   } 
                   catch {
-                     $StatusCode = $_.Exception.Response.StatusCode.value__
+                      Write-Error "az boards query"
                   }
-                  Write-Output $StatusCode
-                  Write-Output $Response.Headers
-                  Write-Output $Response.Content
+                  finally {
+                    Write-Output "Completed"
+                  }                  
               }; 
               Export-ModuleMember -function SayHello -Variable SayHelloHelp
           }
           $SayHelloHelp          
-          SayHello Jeffrey  
-          $url = "https://dev.azure.com/niqflex-org/niqflex/_apis/wit/queries?api-version=7.1-preview.2" 
-          Invoke-RestMethod -Uri "https://dev.azure.com/niqflex-org/niqflex/_apis/wit/queries?api-version=7.1-preview.2" |
-            Format-Table -Property Title, pubDate 
-
-          #https://tenbulls.co.uk/2020/03/11/querying-azure-devops-rest-api-with-powershell/
-          $output = Invoke-RestMethod -Uri $url -Method Get -ContentType "application/json" -Headers $header
-          $output.value | ForEach-Object {
-            Write-Host $_.name
-          }   
+          SayHello Jeffrey           
+          
     # - task: AzurePowerShell@5 #Run a PowerShell script within an Azure environment.
     #   inputs:
     #     azureSubscription: ${env:NIQID} #$env:NIQ_ID
