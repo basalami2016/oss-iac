@@ -36,11 +36,9 @@ stages:
         scriptLocation: inlineScript
         inlineScript: |
           #az upgrade
-          #az --version
-          #az account show   
-          function Hello ($name) {
-              Write-Output "Hello, $name"
-          }      
+          az --version
+          az account show  
+          az boards query --wiql "SELECT [System.Title] FROM workitems" --output table
     - task: CmdLine@2 
       displayName: 'Microsoft Security DevOps' 
       inputs:  
