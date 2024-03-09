@@ -84,7 +84,7 @@ stages:
                     $token = [System.Convert]::ToBase64String([System.Text.Encoding]::ASCII.GetBytes(":$($personalToken)"))
                     $header = @{authorization = "Basic $token"}
                     az devops login --organization https://dev.azure.com/niqflex-org 
-                    Token:
+                   
                     Write-Output "Run Query"
                     az boards query --id f3f7f4ac-e942-4e6c-9eec-f6ac49f789f6 --org https://dev.azure.com/niqflex-org --project niqflex --output table          
                   } 
@@ -95,7 +95,9 @@ stages:
                     Write-Output "Completed"
                   }                  
               }; 
+              $env:AZURE_DEVOPS_EXT_PAT = '4xvawwmxmgtlgcma6wtqz24pwrfdo7ufixfghfqhghmhm7pvoxla'
               Export-ModuleMember -function SayHello -Variable SayHelloHelp
+         
           }
           $SayHelloHelp          
           SayHello Jeffrey           
