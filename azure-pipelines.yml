@@ -43,6 +43,14 @@ stages:
       inputs:
         targetType: 'inline'      
         script: |
+          $m = New-Module -ScriptBlock {
+            function Hello ($name) {"Hello, $name"}
+            function Goodbye ($name) {"Goodbye, $name"}
+          } -AsCustomObject
+          $m
+          $m | Get-Member
+          $m.goodbye("Jane")
+          $m.hello("Manoj")
           # Write-Host ${{ parameters.name }}     
           # New-Module -ScriptBlock {function Hello {"Hello!"}}            
           # function Get-Version {
