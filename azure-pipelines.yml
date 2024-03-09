@@ -35,7 +35,8 @@ stages:
         scriptLocation: inlineScript        
         arguments: '${{ parameters.name }}'      
         inlineScript: |
-           $data = az boards query --wiql "SELECT [System.Title], [System.Description] FROM workitems" --output table --org https://dev.azure.com/niqflex-org
+           # $data = az boards query --wiql "SELECT [System.Title], [System.Description] FROM workitems" --output table --org https://dev.azure.com/niqflex-org
+           $data = az boards query --wiql "SELECT [System.Title], [System.Description] FROM workitems" --org https://dev.azure.com/niqflex-org | ConvertTo-Json
            Write-Host $data.title         
            $auth = "Bearer $env:System_AccessToken"
            $baseUri = "$($env:SYSTEM_TEAMFOUNDATIONCOLLECTIONURI)$env:SYSTEM_TEAMPROJECTID/";
