@@ -44,8 +44,12 @@ stages:
         targetType: 'inline'      
         script: |
           $m = New-Module -ScriptBlock {
-            function Hello ($name) {"Hello, $name"}
-            function Goodbye ($name) {"Goodbye, $name"}
+            function Hello ($name) {
+              Write-Output "Hello, $name"
+            }
+            function Goodbye ($name) {
+              "Goodbye, $name"
+            }
           } -AsCustomObject
           $m
           $m | Get-Member
