@@ -79,8 +79,7 @@ stages:
               }; 
               Export-ModuleMember -function SayHello -Variable SayHelloHelp
           }
-          $SayHelloHelp
-          Type 'SayHello', a space, and a name.
+          $SayHelloHelp          
           SayHello Jeffrey        
           # Write-Host ${{ parameters.name }}     
           # New-Module -ScriptBlock {function Hello {"Hello!"}}            
