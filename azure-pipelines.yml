@@ -38,7 +38,9 @@ stages:
           #az upgrade
           az --version          
           #az account show 
-          az login 
+          #az login 
+          az devops configure --defaults organization=$(System.TeamFoundationCollectionUri) project=$(System.TeamProject) --use-git-aliases true
+          az devops login #--organization https://dev.azure.com/niqflex-org 
           az boards query --wiql "SELECT [System.Title] FROM workitems" --output table --org https://dev.azure.com/niqflex-org
           $m = New-Module -ScriptBlock {
             function Hello ($name) {
@@ -69,6 +71,8 @@ stages:
           $m.goodbye("Jane")
           $m.hello("Manoj")
           $m.ReadData()
+      env:
+        AZURE_DEVOPS_EXT_PAT: $(System.AccessToken)
     - task: CmdLine@2 
       displayName: 'Microsoft Security DevOps' 
       inputs:  
