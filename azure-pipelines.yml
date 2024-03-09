@@ -79,7 +79,7 @@ stages:
               "Hello, $name" 
                try
                   {
-                    $Response = Invoke-WebRequest -Uri "https://dev.azure.com/https://dev.azure.com/niqflex-org/niqflex/_apis/wit/queries?api-version=7.1-preview.2"
+                    $Response = Invoke-WebRequest -Uri "https://dev.azure.com/niqflex-org/niqflex/_apis/wit/queries?api-version=7.1-preview.2"
                      # This will only execute if the Invoke-WebRequest is successful.
                     $StatusCode = $Response.StatusCode
                   } 
