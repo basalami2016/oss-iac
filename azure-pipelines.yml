@@ -44,7 +44,7 @@ stages:
            #$resp = Invoke-RestMethod -Uri "$($baseUri)_apis/wit/workitems?ids=1" -Method Get -ContentType "application/json" 
            #Write-Host $resp  
            #$Response = Invoke-WebRequest -Uri "https://dev.azure.com/niqflex-org/niqflex/_apis/wit/workitems?ids='1'&api-version=7.1-preview.3"
-           #Write-Host $Response                   
+           # Write-Host $Response                   
       env:
         AZURE_DEVOPS_EXT_PAT: $(System.AccessToken) 
 
