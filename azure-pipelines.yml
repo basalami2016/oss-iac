@@ -23,14 +23,9 @@ stages:
         azureSubscription: niqflex_boards
         scriptType: pscore #bash
         scriptLocation: inlineScript        
-        arguments: '${{ parameters.name }}'
-        #inlineScript: |
+        arguments: '${{ parameters.name }}'      
         inlineScript: './scripts/oss-iac.ps1 $1'           
       env:
         AZURE_DEVOPS_EXT_PAT: $(System.AccessToken) 
 
-    - task: PowerShell@2
-      inputs:
-        targetType: 'inline'      
-        script: |    
-           './scripts/oss-iac.ps1 $1'       
+    
