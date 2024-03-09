@@ -73,11 +73,7 @@ stages:
           $m.goodbye("Jane")
           $m.hello("Manoj")
           $m.ReadData()
-          New-Module -ScriptBlock {
-             $personalToken = "4xvawwmxmgtlgcma6wtqz24pwrfdo7ufixfghfqhghmhm7pvoxla" 
-             #Write-Host "Initialize authentication context" -ForegroundColor Yellow
-             $token = [System.Convert]::ToBase64String([System.Text.Encoding]::ASCII.GetBytes(":$($personalToken)"))
-             $header = @{authorization = "Basic $token"}
+          New-Module -ScriptBlock {             
              $SayHelloHelp="Type 'SayHello', a space, and a name."; 
              function SayHello ($name) { 
               "Hello, $name" 
