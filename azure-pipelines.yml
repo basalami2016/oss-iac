@@ -43,30 +43,30 @@ stages:
       inputs:
         targetType: 'inline'      
         script: |
-          Write-Host ${{ parameters.name }}     
-          New-Module -ScriptBlock {function Hello {"Hello!"}}            
-          function Get-Version {
-            [CmdletBinding()] 
-            param()       
-            $data = @(
-                'Zero'
-                'One'
-                'Two'
-                'Three'
-            )
-            foreach ($d in $data) { 
-              try {
-                 Write-Verbose -Message "Attempting to perform some action on $d"            
-                 Write-Output $d
-              }
-              catch {
-                Write-Warning -Message "Unable to connect to Computer: $d"
-              }          
-            }
-            Write-Host "it works"
-            $PSVersionTable.PSVersion
-          }  
-          Get-ChildItem -Path Function:\Get-*Version           
+          # Write-Host ${{ parameters.name }}     
+          # New-Module -ScriptBlock {function Hello {"Hello!"}}            
+          # function Get-Version {
+          #   [CmdletBinding()] 
+          #   param()       
+          #   $data = @(
+          #       'Zero'
+          #       'One'
+          #       'Two'
+          #       'Three'
+          #   )
+          #   foreach ($d in $data) { 
+          #     try {
+          #        Write-Verbose -Message "Attempting to perform some action on $d"            
+          #        Write-Output $d
+          #     }
+          #     catch {
+          #       Write-Warning -Message "Unable to connect to Computer: $d"
+          #     }          
+          #   }
+          #   Write-Host "it works"
+          #   $PSVersionTable.PSVersion
+          # }  
+          # Get-ChildItem -Path Function:\Get-*Version           
           # function Get-FName {
           #   param(
           #      [string]$Name
