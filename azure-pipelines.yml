@@ -27,8 +27,8 @@ stages:
 - stage: ${{ parameters.name }}
   jobs:
   - job: oss_job
-    steps:
-    - task: AzureCLI@2
+    steps:      
+    - task: AzureCLI@2 #https://learn.microsoft.com/en-us/azure/devops/pipelines/library/connect-to-azure?view=azure-devops
       displayName: Azure CLI
       inputs:
         azureSubscription: niqflex_boards
@@ -38,6 +38,9 @@ stages:
           az upgrade
           az --version
           az account show
+          function Hello ($name) {
+              Write-Output "Hello, $name"
+          }
     - task: CmdLine@2 
       displayName: 'Microsoft Security DevOps' 
       inputs:  
