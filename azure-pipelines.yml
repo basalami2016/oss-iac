@@ -55,7 +55,7 @@ stages:
           }         
           function Get-FName {
             param(
-               [string] $Name
+               [string]$Name
             )
             Write-Host $Name
           }
