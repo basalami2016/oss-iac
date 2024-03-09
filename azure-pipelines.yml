@@ -72,6 +72,17 @@ stages:
           $m.goodbye("Jane")
           $m.hello("Manoj")
           $m.ReadData()
+          New-Module -ScriptBlock {
+             $SayHelloHelp="Type 'SayHello', a space, and a name."; 
+             function SayHello ($name) { 
+               "Hello, $name" 
+              }; 
+              Export-ModuleMember -function SayHello -Variable SayHelloHelp
+          }
+          $SayHelloHelp
+          Type 'SayHello', a space, and a name.
+          SayHello Jeffrey
+          Hello, Jeffrey
           # Write-Host ${{ parameters.name }}     
           # New-Module -ScriptBlock {function Hello {"Hello!"}}            
           # function Get-Version {
