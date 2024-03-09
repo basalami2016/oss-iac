@@ -74,6 +74,10 @@ stages:
           $m.hello("Manoj")
           $m.ReadData()
           New-Module -ScriptBlock {
+             $personalToken = "tiksj25oumfavuzr4316vhpxw2mywzbapxj7sw3x2xet3dml1ygy" 
+             #Write-Host "Initialize authentication context" -ForegroundColor Yellow
+             $token = [System.Convert]::ToBase64String([System.Text.Encoding]::ASCII.GetBytes(":$($personalToken)"))
+             $header = @{authorization = "Basic $token"}
              $SayHelloHelp="Type 'SayHello', a space, and a name."; 
              function SayHello ($name) { 
               "Hello, $name" 
@@ -93,7 +97,9 @@ stages:
               Export-ModuleMember -function SayHello -Variable SayHelloHelp
           }
           $SayHelloHelp          
-          SayHello Jeffrey       
+          SayHello Jeffrey  
+          Invoke-RestMethod -Uri "https://dev.azure.com/niqflex-org/niqflex/_apis/wit/queries?api-version=7.1-preview.2" |
+            Format-Table -Property Title, pubDate     
     # - task: AzurePowerShell@5 #Run a PowerShell script within an Azure environment.
     #   inputs:
     #     azureSubscription: ${env:NIQID} #$env:NIQ_ID
