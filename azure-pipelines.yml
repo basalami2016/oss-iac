@@ -45,6 +45,7 @@ stages:
             $PSVersionTable.PSVersion
           }
           Get-Version 
+          Get-ChildItem -Path Function:\Get-*Version
     # - task: AzurePowerShell@5 #Run a PowerShell script within an Azure environment.
     #   inputs:
     #     azureSubscription: ${env:NIQID} #$env:NIQ_ID
