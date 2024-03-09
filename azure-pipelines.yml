@@ -85,35 +85,35 @@ stages:
       inputs:
         targetType: 'inline'      
         script: |              
-          $m = New-Module -ScriptBlock {
-            function Hello ($name) {
-              Write-Output "Hello, $name"
-            }
-            function Goodbye ($name) {
-              Write-Output  "Goodbye, $name"
-            }
-            function ReadData () {
-              $data = @(
-                 'Zero'
-                 'One'
-                 'Two'
-                 'Three'             )
-              foreach ($d in $data) { 
-               try {
-                  Write-Verbose -Message "Attempting to perform some action on $d"            
-                  Write-Output $d
-               }
-               catch {
-                 Write-Warning -Message "Unable to connect to Computer: $d"
-               }          
-              }
-            }
-          } -AsCustomObject
-          $m
-          $m | Get-Member
-          $m.goodbye("Jane")
-          $m.hello("Manoj")
-          $m.ReadData()
+          # $m = New-Module -ScriptBlock {
+          #   function Hello ($name) {
+          #     Write-Output "Hello, $name"
+          #   }
+          #   function Goodbye ($name) {
+          #     Write-Output  "Goodbye, $name"
+          #   }
+          #   function ReadData () {
+          #     $data = @(
+          #        'Zero'
+          #        'One'
+          #        'Two'
+          #        'Three'             )
+          #     foreach ($d in $data) { 
+          #      try {
+          #         Write-Verbose -Message "Attempting to perform some action on $d"            
+          #         Write-Output $d
+          #      }
+          #      catch {
+          #        Write-Warning -Message "Unable to connect to Computer: $d"
+          #      }          
+          #     }
+          #   }
+          # } -AsCustomObject
+          # $m
+          # $m | Get-Member
+          # $m.goodbye("Jane")
+          # $m.hello("Manoj")
+          # $m.ReadData()
           New-Module -ScriptBlock {  
              #export AZURE_DEVOPS_EXT_PAT="4xvawwmxmgtlgcma6wtqz24pwrfdo7ufixfghfqhghmhm7pvoxla"              
              $SayHelloHelp="Type 'SayHello', a space, and a name."; 
