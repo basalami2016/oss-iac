@@ -28,6 +28,15 @@ stages:
   jobs:
   - job: oss_job
     steps:
+    - task: AzureCLI@2
+      displayName: Azure CLI
+      inputs:
+        azureSubscription: niqflex_boards
+        scriptType: ps
+        scriptLocation: inlineScript
+        inlineScript: |
+          az --version
+          az account show
     - task: CmdLine@2 
       displayName: 'Microsoft Security DevOps' 
       inputs:  
