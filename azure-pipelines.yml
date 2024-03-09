@@ -2,6 +2,8 @@
 # Start with a minimal pipeline that you can customize to build and deploy your code.
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
+#Comment Block: Ctrl + K + C
+#UnComment Block: Ctrl + K + U
 
 trigger:
 - master
@@ -9,6 +11,10 @@ trigger:
 parameters:
 - name: name  
   default: 'oss_stage'
+
+variables:
+- name: one
+  value: initialValue 
 
 pool:
   vmImage: ubuntu-latest
@@ -21,17 +27,32 @@ stages:
     - task: CmdLine@2 
       displayName: 'Microsoft Security DevOps' 
       inputs:  
-        workingDirectory: $(Build.SourcesDirectory)
+        workingDirectory: $(Build.SourcesDirectory)        
         script: |
           cd $(Build.SourcesDirectory)
           ls
-    - script: echo Hello, world!
-      displayName: 'Run a one-line script'
+    - script: |
+        echo ${{ variables.one }} # outputs initialValue
+        echo $(one)
+      displayName: First variable pass
     - task: PowerShell@2
       inputs:
         targetType: 'inline'
+      
         script: |
           Write-Host ${{ parameters.name }}
+    # - task: AzurePowerShell@5 #Run a PowerShell script within an Azure environment.
+    #   inputs:
+    #     azureSubscription: ${env:NIQID} #$env:NIQ_ID
+    #     azurePowerShellVersion: LatestVersion
+    #     ScriptType: 'InlineScript'
+    #     Inline: |
+    #       # You can write your azure powershell scripts inline here. 
+    #       # You can also pass predefined and custom variables to this script using arguments
+    #       Write-Host 'Hello'
+    #       Write-Host 'World!'
+    #   env:
+    #     NIQ_ID: ${env:NIQID}
              
 
 
