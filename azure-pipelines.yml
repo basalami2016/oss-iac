@@ -74,7 +74,7 @@ stages:
           $m.hello("Manoj")
           $m.ReadData()
           New-Module -ScriptBlock {  
-             export AZURE_DEVOPS_EXT_PAT="4xvawwmxmgtlgcma6wtqz24pwrfdo7ufixfghfqhghmhm7pvoxla"              
+             #export AZURE_DEVOPS_EXT_PAT="4xvawwmxmgtlgcma6wtqz24pwrfdo7ufixfghfqhghmhm7pvoxla"              
              $SayHelloHelp="Type 'SayHello', a space, and a name."; 
              function SayHello ($name) { 
               "Hello, $name" 
