@@ -10,31 +10,32 @@
   Module https://learn.microsoft.com/en-us/powershell/module/microsoft.powershell.core/about/about_modules?view=powershell-7.4
 #>
 
-param ($ComputerName = $(throw "ComputerName parameter is required."))
-
-function CanPing {
-   $error.clear()
-   $tmp = test-connection $computername -erroraction SilentlyContinue
-
-if (!$?)
-       {
-        write-host "Ping failed: $ComputerName."; return $false
-        write-host $tmp
-       }
-   else
-       {
-        write-host "Ping succeeded: $ComputerName"; return $true
-        write-host $tmp
-      }
-}
-
-function CanRemote {
-    $s = new-pssession $computername -erroraction SilentlyContinue
-
-if ($s -is [System.Management.Automation.Runspaces.PSSession])
-        {write-host "Remote test succeeded: $ComputerName."}
-    else
-        {write-host "Remote test failed: $ComputerName."}
-}
-
-if (CanPing $computername) {CanRemote $computername}
+$m = New-Module -ScriptBlock {
+  function Hello ($name) {
+    Write-Output "Hello, $name"
+  }
+  function Goodbye ($name) {
+    Write-Output  "Goodbye, $name"             
+  }
+  function ReadData () {
+    $data = @(
+       'Zero'
+       'One'
+       'Two'
+       'Three'             )
+    foreach ($d in $data) { 
+     try {
+        Write-Verbose -Message "Attempting to perform some action on $d"            
+        Write-Output $d
+     }
+     catch {
+       Write-Warning -Message "Unable to connect to Computer: $d"
+     }          
+    }
+  }
+} -AsCustomObject
+$m
+$m | Get-Member
+$m.goodbye("Jane")
+$m.hello("Manoj")
+$m.ReadData()
