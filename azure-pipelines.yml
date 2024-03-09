@@ -30,10 +30,7 @@ stages:
 - stage: ${{ parameters.name }}
   jobs:
   - job: oss_job
-    steps:   
-    - script: | 
-      ${{ each p in parameters.param }}:
-        echo ${{ p }}      
+    steps:  
     - task: AzureCLI@2 #https://learn.microsoft.com/en-us/azure/devops/pipelines/library/connect-to-azure?view=azure-devops
       displayName: Azure-PS1
       inputs:
