@@ -44,17 +44,17 @@ stages:
             Write-Host "it works"
             $PSVersionTable.PSVersion
           }         
-          function Get-Name {
+          function Get-FName {
             param(
-               [string] $Name
+               [string] $myName
             )
-            Write-Host "Hello" $Name
+            Write-Host "Hello" $myName
           }
           Get-Version 
-          $funcName = "Get-Name"
-          $funcName -Name "Biliaminu Salami"
+          $funcName = "Get-FName"
+          $funcName -myName "Biliaminu Salami"
           Get-ChildItem -Path Function:\Get-*Version
-          Get-ChildItem -Path Function:\Get-*Name 
+          Get-ChildItem -Path Function:\Get-*FName 
     # - task: AzurePowerShell@5 #Run a PowerShell script within an Azure environment.
     #   inputs:
     #     azureSubscription: ${env:NIQID} #$env:NIQ_ID
