@@ -40,9 +40,11 @@ stages:
         targetType: 'inline'      
         script: |
           Write-Host ${{ parameters.name }}
-          function printOut {
+          function Get-Version {
             Write-Host "it works"
+            $PSVersionTable.PSVersion
           }
+          Get-Version 
     # - task: AzurePowerShell@5 #Run a PowerShell script within an Azure environment.
     #   inputs:
     #     azureSubscription: ${env:NIQID} #$env:NIQ_ID
