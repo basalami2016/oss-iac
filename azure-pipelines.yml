@@ -40,7 +40,7 @@ stages:
            $baseUri = "$($env:SYSTEM_TEAMFOUNDATIONCOLLECTIONURI)$env:SYSTEM_TEAMPROJECTID/";
            $headers = @{Authorization = $auth };
            Write-Host "baseUrl $($baseUri)"       
-           $resp = Invoke-RestMethod -Uri "$($baseUri)_apis/wit/workitems?ids='${{ parameters.ids }}'" -Method Get -ContentType "application/json" 
+           $resp = Invoke-RestMethod -Uri "$($baseUri)_apis/wit/workitems?ids=1" -Method Get -ContentType "application/json" 
            Write-Host $resp  
            $Response = Invoke-WebRequest -URI https://dev.azure.com/niqflex-org/niqflex/_apis/wit/workitems?ids=1"  
            Write-Host $Response                   
