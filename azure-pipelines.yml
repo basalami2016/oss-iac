@@ -5,20 +5,6 @@ parameters:
 - name: name  
   default: 'oss_stage'
 
-- name: 'param'
-  type: object
-  default: 
-  - FOO
-  - BAR
-  - ZOO
-
-- name: 'ids'
-  type: object
-  default: 
-  - 1
-  - 2
-  - 3
-
 variables:
 - name: one
   value: initialValue 
